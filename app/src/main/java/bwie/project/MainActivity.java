@@ -31,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
+            if(msg.what == 0){
+                //获取当前的页数
+                int currentItem = viewpager.getCurrentItem();
+                currentItem++;
+                viewpager.setCurrentItem(currentItem);
+                handler.sendEmptyMessageDelayed(0,1000);
+            }
         }
     };
 
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        handler.sendEmptyMessage(1000);
+        handler.sendEmptyMessageDelayed(0,1000);
 
     }
 
