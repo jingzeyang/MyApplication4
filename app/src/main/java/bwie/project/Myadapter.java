@@ -44,7 +44,7 @@ public class Myadapter extends PagerAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return path.length;
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -55,18 +55,18 @@ public class Myadapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        // TODO Auto-generated method stub
 
-        container.removeView((View) object);
+
+
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        // TODO Auto-generated method stub
-        ImageView imageView = new ImageView(context);
-        bitmapUtils.display(imageView, path[position]);
-        container.addView(imageView);
 
+        ImageView imageView = new ImageView(context);
+        container.removeView(imageView);
+        bitmapUtils.display(imageView, path[position % path.length]);
+        container.addView(imageView);
         return imageView;
     }
 

@@ -1,6 +1,8 @@
 package bwie.project;
 
 import android.media.Image;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
             "http://zxpic.gtimg.com/infonew/0/wechat_pics_-214479.jpg/168"};
     private List<ImageView> list;
     private int index;
+    private Handler handler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         fl = (LinearLayout) findViewById(R.id.fl);
         addpoint();
         viewpager.setAdapter(new Myadapter(path, this));
+        viewpager.setCurrentItem(path.length*100000);
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -59,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        handler.sendEmptyMessage(1000);
 
     }
 
